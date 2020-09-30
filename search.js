@@ -71,6 +71,111 @@ class BinarySearchTree {
 
         return values;
     }
+    insert(key, value) {
+        //Check if tree is empty, if so then this is the root node
+        if(this.key == null) {
+          this.key = key
+          this.value = value 
+        }
+    
+        // If not an empty tree compare keys to determine of we need to move left or right
+        else if (key < this.key) {
+          //check current key's left pointer to see if it is empty
+          if(this.left == null) {
+            this.left = new BinarySearchTree(key, value, this)
+          } else {
+            //if there is an existing node recursively call insert
+            this.left.insert(key, value)
+          }
+        } else {
+          //If new key is greater than current key, move right
+          if(this.right == null) {
+            this.right = new BinarySearchTree(key, value, this)
+          } else {
+            this.right.insert(key, value)
+          }
+        }
+      }
+    
+      find(key) {
+        if(this.key == key) {
+          return this
+          // return this.value
+        }
+        //if key we're looking for is less than current key, look left
+        //Then recursively call our find function looking on either side of the current node
+        else if(key < this.key && this.left) {
+          return this.left.find(key)
+        }
+        //If the key we're looking for is greater, move to the right
+        else if(key > this.key && this.right) {
+          return this.right.find(key)
+        } else {
+          throw new Error('Key Error')
+        }
+      }
+    
+      remove(key) {
+        // Found key we're looking for
+        if(this.key == key) {
+          //Has two children?
+          //Find smallest value from right tree and copy all its info to the node to be deleted
+          if(this.left && this.right) {
+            const successor = this.right._findMin()
+            this.key = successor.key
+            this.value = successor.value
+            successor.remove(successor.key)
+          } else if(this.left) {
+            //Only has a left child
+            this._replaceWith(this.left)
+          } else if(this.right) {
+            //Only has a right child
+            this._replaceWith(this.right)
+          } else {
+            this._replaceWith(null)
+          }
+          //Looking for key to be removed
+        } else if(key < this.key && this.left) {
+          this.left.remove(key)
+        } else if(key > this.key && this.right) {
+          this.right.remove(key)
+        } else {
+          throw new Error('Key Error')
+        }
+      }
+    
+      _replaceWith(node) {
+        if(this.parent) {
+          if(this == this.parent.left) {
+            this.parent.left = node
+          } else if(this == this.parent.right) {
+            this.parent.right = node
+          }
+          if(node) {
+            node.parent = this.parent
+          }
+        } else {
+          if(node) {
+            this.key = node.key
+            this.value = node.value
+            this.left = node.left
+            this.right = node.right
+          } else {
+            this.key = null
+            this.value = null
+            this.left = null
+            this.right = null
+          }
+        }
+      }
+    
+      _findMin() {
+        if(!this.left) {
+          return this
+        }
+        return this.left._findMin()
+      }
+    
 }
 
 module.exports = {BinarySearchTree, binarySearch, indexOf}

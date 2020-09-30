@@ -24,20 +24,94 @@ sortedInput = input.sort((a,b) => a-b);
 
 //  Drill #4 
 // Part 1)
-14, 15 19 25, 27 35 79,89 90 91 // IN ORDER
-35 25 15 14 19 27 89 79 91 90  // PRE ORDER
-14, 19, 15, 27, 25, 79, 90, 91, 89, 35  // POST ORDER
+// 14, 15 19 25, 27 35 79,89 90 91 // IN ORDER
+// 35 25 15 14 19 27 89 79 91 90  // PRE ORDER // NLR
+// 14, 19, 15, 27, 25, 79, 90, 91, 89, 35  // POST ORDER // LRN
 
-		                35
-	            25 	         89
-         15     27     79     91
-	    14  19                90 
+// 		                35
+// 	            25 	         89
+//          15     27     79     91
+// 	    14  19                90 
 
 // Part 2)
-5 7 6 9 11 10 8 // POST ORDER
-8 6 5 7 10 9 11 // PRE ORDER
- 	        8
-      6      10
-     5  7    9  11
+// 5 7 6 9 11 10 8 // POST ORDER // LRN
+// 8 6 5 7 10 9 11 // PRE ORDER // NLR
+//  	        8
+//       6      10
+//      5  7    9  11
+
 
 // Drill #5
+// inOrder LNR, preOrder NLR, postOrder LRN
+// let arr = [25, 15, 50, 10, 24, 35, 70, 4, 12, 18, 31, 44, 66, 90, 22]
+/*  
+
+                     25
+              15              50
+          10      24      35      70
+        4  12   18      31  44   66  90
+                   22 
+*/
+
+
+const treeTrav = new BinarySearchTree()
+  treeTrav.insert(25)
+  treeTrav.insert(15)
+  treeTrav.insert(50)
+  treeTrav.insert(10)
+  treeTrav.insert(24)
+  treeTrav.insert(35)
+  treeTrav.insert(70)
+  treeTrav.insert(4)
+  treeTrav.insert(12)
+  treeTrav.insert(18)
+  treeTrav.insert(31)
+  treeTrav.insert(44)
+  treeTrav.insert(66)
+  treeTrav.insert(90)
+  treeTrav.insert(22)
+//   console.log(treeTrav)
+
+  // 4, 12, 10, 22, 18, 24, 15, 31, 44, 35, 66, 90, 70, 50, 25
+  postOrder = (node) => {
+      if (node === null) return
+      postOrder(node.left)
+      postOrder(node.right)
+      console.log(node.key)
+  }
+//   console.log('POST-ORDER', postOrder(treeTrav))
+
+  // 25, 15, 10, 4, 12, 24, 18, 22, 50, 35, 31, 44, 70, 66, 90
+  preOrder = (node) => {
+    if (node === null) return
+    console.log(node.key)
+    preOrder(node.left)
+    preOrder(node.right)
+}
+console.log('PRE-ORDER', preOrder(treeTrav))
+
+// 4, 10, 12, 15, 18, 22, 24, 25, 31, 35, 44, 50, 66, 70, 90
+inOrder = (node) => {
+    if (node === null) return
+    inOrder(node.left)
+    console.log(node.key)
+    inOrder(node.right)
+}
+console.log('IN-ORDER', inOrder(treeTrav))
+
+// postOfBst = (arr) => {
+//     if (!arr.length) {
+//         return null
+//     }
+//     const root = arr[arr.length - 1]
+//     const rest = arr.slice(0 ,arr.length - 1)
+//     const left = rest.filter(item => item < root)
+//     const right = rest.filter(item => item >= root)
+
+//     const node = new BinarySearchTree(root)
+//     node.left = postOfBst(left)
+//     node.right = postOfBst(right)
+//     return node
+// }
+
+// console.log('POST', postOfBst(arr))
