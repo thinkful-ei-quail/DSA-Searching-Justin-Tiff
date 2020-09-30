@@ -88,7 +88,7 @@ const treeTrav = new BinarySearchTree()
     preOrder(node.left)
     preOrder(node.right)
 }
-console.log('PRE-ORDER', preOrder(treeTrav))
+// console.log('PRE-ORDER', preOrder(treeTrav))
 
 // 4, 10, 12, 15, 18, 22, 24, 25, 31, 35, 44, 50, 66, 70, 90
 inOrder = (node) => {
@@ -97,7 +97,7 @@ inOrder = (node) => {
     console.log(node.key)
     inOrder(node.right)
 }
-console.log('IN-ORDER', inOrder(treeTrav))
+// console.log('IN-ORDER', inOrder(treeTrav))
 
 // postOfBst = (arr) => {
 //     if (!arr.length) {
@@ -115,3 +115,28 @@ console.log('IN-ORDER', inOrder(treeTrav))
 // }
 
 // console.log('POST', postOfBst(arr))
+
+// Drill #6
+// const officers = ['Captain Picard', 'Commander Riker', 'Commander Data', 'Lt. Cmdr Worf', 'Lt. Cmdr LaForge', 'Lt. Cmdr Crusher', 'Lieutenant security-officer', 'Lieutenant Selar']
+
+const officerTree = new BinarySearchTree()
+  officerTree.insert('Captain Picard');
+  officerTree.insert('Commander Riker');
+  officerTree.insert('Commander Data');
+  officerTree.insert('Lt. Cmdr Worf');
+  officerTree.insert('Lt. Cmdr LaForge');
+  officerTree.insert('Lt. Cmdr Crusher');
+  officerTree.insert('Lieutenant security-officer');
+  officerTree.insert('Lieutenant Selar');
+
+
+bfsOrder = (node) => {
+  if (node === null) return
+  console.log(node.key)
+  bfsOrder(node.left)
+  bfsOrder(node.right)
+  console.log(node.key);
+}
+console.log('BFS: ', bfsOrder(officerTree));
+// console.log(officerTree.bfs(officerTree));
+// console.log(officerTree)
