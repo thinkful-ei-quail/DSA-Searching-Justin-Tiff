@@ -117,6 +117,7 @@ inOrder = (node) => {
 // console.log('POST', postOfBst(arr))
 
 // Drill #6
+
 // const officers = ['Captain Picard', 'Commander Riker', 'Commander Data', 'Lt. Cmdr Worf', 'Lt. Cmdr LaForge', 'Lt. Cmdr Crusher', 'Lieutenant security-officer', 'Lieutenant Selar']
 
 const officerTree = new BinarySearchTree()
@@ -128,15 +129,7 @@ const officerTree = new BinarySearchTree()
   officerTree.insert('Lt. Cmdr Crusher');
   officerTree.insert('Lieutenant security-officer');
   officerTree.insert('Lieutenant Selar');
+  officerTree.bfs()
 
-
-bfsOrder = (node) => {
-  if (node === null) return
-  console.log(node.key)
-  bfsOrder(node.left)
-  bfsOrder(node.right)
-  console.log(node.key);
-}
-console.log('BFS: ', bfsOrder(officerTree));
-// console.log(officerTree.bfs(officerTree));
+console.log('BFS', officerTree.bfs(officerTree));
 // console.log(officerTree)
