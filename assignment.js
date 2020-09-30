@@ -22,4 +22,9 @@ sortedInput = input.sort((a,b) => a-b);
 //  Drill #3
 // Binary search
 
-//  Drill #4
+//  Drill #4 
+// p  L   R  p  L  R  p  L  R  p     p  L   R  p  L  R  p  L  R p  PRE ORDER TRAVERSAL
+// 14 15 19 25 27 35 79 89 90 91 and 35 25 15 14 19 27 89 79 91 90  PRE ORDER TRAVERSAL
+// 15 19 14 27 35 25 89 90 79 91 and 25 15 35 19 27 14 79 91 89 90 POST ORDER TRAVERSAL 
+// L  R  p  L  R  p  L  R  p  p  and L  R  p  L  R  p  L  R  p  p POST ORDER TRAVERSAL
+
